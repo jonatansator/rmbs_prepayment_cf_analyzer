@@ -66,17 +66,19 @@ def update_plot():
 
         # Step 7: Plot cash flows
         ax.clear()
-        ax.plot(df['t'], df['CF'] / 1e6, color='#FF6B6B', lw=2, label='Total CF')
-        ax.plot(df['t'], tr['Senior'] / 1e6, color='#4ECDC4', lw=2, label='Senior')
-        ax.plot(df['t'], tr['Junior'] / 1e6, color='#45B7D1', lw=2, label='Junior')
+        ax.stackplot(df['t'], tr['Senior'] / 1e6, tr['Junior'] / 1e6, 
+                     labels=['Senior (80%)', 'Junior (20%)'], 
+                     colors=['#4ECDC4', '#45B7D1'], alpha=0.8)
+        ax.plot(df['t'], df['CF'] / 1e6, color='#FF6B6B', lw=1.5, label='Total CF', linestyle='--')
         ax.set_xlabel('Month', color='white')
         ax.set_ylabel('Cash Flow ($M)', color='white')
-        ax.set_title('Mortgage Pool Cash Flows', color='white')
+        ax.set_title('Mortgage Pool Cash Flows (PSA Prepayment)', color='white')
         ax.set_facecolor('#2B2B2B')
         fig.set_facecolor('#1E1E1E')
-        ax.grid(True, ls='--', color='#555555', alpha=0.5)
-        ax.legend(facecolor='#333333', edgecolor='white', labelcolor='white')
+        ax.grid(True, ls='--', color='#555555', alpha=0.3)
+        ax.legend(loc='upper right', facecolor='#333333', edgecolor='white', labelcolor='white')
         ax.tick_params(colors='white')
+        ax.set_ylim(0, max(df['CF'].max() / 1e6, 1) * 1.2)
         canv.draw()
 
         # Step 8: Update total cash flow display
