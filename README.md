@@ -4,8 +4,6 @@
 - It incorporates a PSA (Public Securities Association) prepayment model to estimate early repayments, calculates monthly cash flows, and allocates them to senior and junior tranches.
 - A GUI enables users to input mortgage pool parameters and visualize cash flows over time.
 
-
-
 ---
 
 ## Files
@@ -30,3 +28,5 @@
 - **Visualization**: Displays a real-time plot of total, senior, and junior tranche cash flows (in $M) over time.
 - **Metrics**: Shows the total cash flow across the pool’s life.
 
+## Screenshots
+![RMBS Cash Flow Plot](output_.png)
